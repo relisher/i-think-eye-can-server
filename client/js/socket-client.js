@@ -1,5 +1,5 @@
 'use strict';
-var socket = io('http://localhost:3000');
+var socket = io('http://cardboardteacher.herokuapp.com/');;
 
 /**
  * Serves an image
