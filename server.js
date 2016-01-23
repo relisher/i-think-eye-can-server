@@ -33,13 +33,20 @@ let server = app.listen(port, () => {
 
 let io = require('socket.io')(server);
 
-let currentView = 'skeleton';
+let currentViews = [
+  { type: 'skeleton',
+    x: 0, y: 0}
+];
 
 io.on('connection', (socket) => {
-  socket.emit('SET_VIEW', {view: currentView});
+  for(var i = 0; i < currentViews.length; i++) {
+    socket.emit('ADD_VIEW', currentViews[i]);
+  }
 
-  socket.on('CHANGE_VIEW', (data) => {
-    currentView = data.view;
-    io.emit('SET_VIEW', {view: data.view}); // broadcast the message everywhere
+  socket.on('SEL', (data) => {
+    io.emit('REMOVE_VIEW', currentViews[0]);
+    currentViews.shift();
+    currentViews.push({type: data.view, x: 0, y: 0});
+    io.emit('ADD_VIEW', currentViews[currentViews.length - 1]); // broadcast the message everywhere
   });
 });
