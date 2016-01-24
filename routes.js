@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 router.get('/testout', function (req, res, next) {
   res.send('Testing');
