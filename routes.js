@@ -222,7 +222,6 @@ function doReq(data, res) {
       });
 
   req.write(data);
-  print(bad && bad2);
   req.end();
 }
 
