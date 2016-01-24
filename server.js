@@ -116,11 +116,11 @@ io.on('connection', (socket) => {
     currentViews.shift();
     let newView = {
       type: possibleViews[data.choice].type,
-      rotate: parseInt(data.rotate),
-      zoom: parseInt(data.zoom),
-      x: parseInt(data.x),
-      y: parseInt(data.y),
-      z: parseInt(data.z),
+      rotate: 0,
+      zoom: data.zoom,
+      x: data.x,
+      y: data.y,
+      z: data.z,
       rotate_rate: 0
     };
     //let newView = possibleViews[data.choice];
