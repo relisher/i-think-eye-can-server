@@ -33,6 +33,34 @@
                     <div class="input-field hide" id="wrap" style="margin-bottom: 15px">
                         <input placeholder="Enter an equation" id="eq" type="text">
                     </div>
+                    <br><br><br>
+                    <p>Current Model Loaded: <b id="current"></b></p>
+                    <div class="input-field" id="wrap" style="margin-bottom: 1px">
+                    <div class="col s12 center-align">
+                        <div class="col s4 center-align">
+                        <input placeholder="X position" id="x" type = "text">
+                        </div>
+                        <div class="col s4 center-align">
+                        <input placeholder="Y position" id="y" type = "text">
+                        </div>
+                        <div class="col s4 center-align">
+                        <input placeholder="Z position" id="z" type = "text">
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <div class="col s6 center-align">
+                        <input placeholder="Zoom" id="zoom" type = "text">
+                        </div>
+                        <div class="col s6 center-align">
+                        <input placeholder="Rotate" id="rotate" type = "text">
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                    <div class="col s12 center-align">
+                        <input placeholder="Equation" id="equation" type = "text">
+                        </div>
+                    </div>
+                    </div>
                     <a class="waves-effect waves-light btn" onclick="submit()">Submit</a>
                 </div>
             </div>
@@ -61,6 +89,24 @@
         function submit() {
             var v1 = $('#dropdown').val();
             var v2 = $('#eq').val();
+            var x = $('#x').val();
+            var y = $('#y').val();
+            var z = $('#z').val();
+            var zoom = $('#zoom').val();
+            var rotate = $('#rotate').val();
+            var equation = $('#equation').val()
+            if(x || y || z || zoom || rotate || equation) {
+                console.log("yes");
+                updateSelection($("#current").html, 
+                    ((x >= 1) ? x : 0),
+                    ((y >= 1) ? y : 0),
+                    ((z >= 1) ? z : 0),
+                    ((zoom >= .1) ? zoom : 1),
+                    ((rotate >= 1) ? rotate : 0),
+                    ((equation >= 1) ? equation : 0)
+
+                    
+            )}
             if (!v2) {
                 sendSelection(v1);
                 console.log("sent v1");
@@ -68,6 +114,8 @@
                 sendSelection(v1,v2);
                 console.log("sent v2");
             }
+
+
         }
     </script>
 </body>
