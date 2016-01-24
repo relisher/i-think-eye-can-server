@@ -26,7 +26,7 @@ function sendSelection(choice, eq) {
 }
 
 function updateSelection(choice, x, y, z, zoom, rotate, equation) {
-    socket.emit('UPD', {choice: choice, x: x, y:y, z:z, zoom:zoom, rotate:rotate, equation:equation});
+    socket.emit('UPD', {choice: parseChoice(choice), x: x, y:y, z:z, zoom:zoom, rotate:rotate, equation:equation});
 }
 
 function parseChoice(choice) {
