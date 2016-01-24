@@ -11,7 +11,7 @@ router.get('/testout', function (req, res, next) {
 
 
 
-router.post('/sound/', function (req, res, next) {
+router.all('/sound/', function (req, res, next) {
   console.log(req);
   console.log(req.headers);
   doReq(req.headers.sound, res);
