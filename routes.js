@@ -14,7 +14,7 @@ router.get('/testout', function (req, res, next) {
 router.all('/sound/', function (req, res, next) {
   //console.log(req);
   //console.log(req.headers);
-  var inf = req.body.sound
+  var inf = req.headers.sound
   console.log(inf);
   var sound = inf.replace(/\+/g, '-').replace(/\//g, '_');
   var buf = new Buffer(sound, 'base64');
