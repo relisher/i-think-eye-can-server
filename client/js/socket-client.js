@@ -13,16 +13,5 @@ function sendSelection(choice, eq) {
 }
 
 function parseChoice(choice) {
-  switch(choice) {
-    case 1:
-      return "skull";
-    case 2:
-      return "glucose";
-    case 3:
-      return "graph";
-    case 4:
-      return "physics2";
-    case 5:
-      return "physics";
-  }
+  return choice - 1;
 }     

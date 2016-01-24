@@ -33,9 +33,10 @@ let server = app.listen(port, () => {
 
 let io = require('socket.io')(server);
 
-let currentViews = [
+
+let possibleViews = [
   {
-    type: "skeleton",
+    type: "skull",
     rotate: 0,
     zoom: 1,
     x: 0,
@@ -44,7 +45,7 @@ let currentViews = [
     rotate_rate: 0
 },
 {
-    type: "chessboard",
+    type: "glucose",
     rotate: 0,
     zoom: 1,
     x: 0,
@@ -53,7 +54,17 @@ let currentViews = [
     rotate_rate: 0
 },
 {
-    type: "chem-mole",
+    type: "graph",
+    rotate: 0,
+    zoom: 1,
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate_rate: 0,
+    equation: "[Y]=[X]"
+},
+{
+    type: "physics",
     rotate: 0,
     zoom: 1,
     x: 0,
@@ -62,25 +73,7 @@ let currentViews = [
     rotate_rate: 0
 },
 {
-    type: "grapher",
-    rotate: 0,
-    zoom: 1,
-    x: 0,
-    y: 0,
-    z: 0,
-    rotate_rate: 0
-},
-{
-    type: "physics-sim-1",
-    rotate: 0,
-    zoom: 1,
-    x: 0,
-    y: 0,
-    z: 0,
-    rotate_rate: 0
-},
-{
-    type: "physics-sim-2",
+    type: "physics2",
     rotate: 0,
     zoom: 1,
     x: 0,
@@ -90,6 +83,8 @@ let currentViews = [
 }
 ];
 
+let currentViews = [possibleViews[0]];
+
 io.on('connection', (socket) => {
   for(var i = 0; i < currentViews.length; i++) {
     socket.emit('ADD_VIEW', currentViews[i]);
@@ -98,7 +93,12 @@ io.on('connection', (socket) => {
   socket.on('SEL', (data) => {
     io.emit('REMOVE_VIEW', currentViews[0]);
     currentViews.shift();
-    currentViews.push({type: data.view, x: 0, y: 0});
-    io.emit('ADD_VIEW', currentViews[currentViews.length - 1]); // broadcast the message everywhere
+    let newView = possibleViews[data.choice];
+    if(data.eq) {
+      newView.equation = data.eq;
+    }
+
+    currentViews.push(newView);
+    io.emit('ADD_VIEW', currentViews[currentViews.length - 1]);
   });
 });
