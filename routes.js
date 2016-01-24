@@ -14,11 +14,31 @@ router.get('/testout', function (req, res, next) {
 router.all('/sound/', function (req, res, next) {
   //console.log(req);
   //console.log(req.headers);
-  var inf = req.headers.sound
-  console.log(inf);
-  var sound = inf.replace(/\+/g, '-').replace(/\//g, '_');
-  var buf = new Buffer(sound, 'base64');
-  doReq(buf, res);
+  //var inf = req.headers.sound
+
+    var body = '';
+    // we want to get the data as utf8 strings
+    // If you don't set an encoding, then you'll get Buffer objects
+    req.setEncoding('utf8');
+
+    // Readable streams emit 'data' events once a listener is added
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    // the end event tells you that you have entire body
+    req.on('end', () => {
+      try {
+        var data = JSON.parse(body);
+      } catch (er) {
+        // uh oh!  bad json!
+        res.statusCode = 400;
+        return res.end(`error: ${er.message}`);
+      }
+
+      // write back something interesting to the user:
+      doReq(data, res);
+    });
 });
 
 
