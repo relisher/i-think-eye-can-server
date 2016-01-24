@@ -37,7 +37,7 @@ let currentViews = [
   {
     type: "skeleton",
     rotate: 0,
-    zoom: "in",
+    zoom: 1,
     x: 0,
     y: 0,
     z: 0,
@@ -46,7 +46,7 @@ let currentViews = [
 {
     type: "chessboard",
     rotate: 0,
-    zoom: "in",
+    zoom: 1,
     x: 0,
     y: 0,
     z: 0,
@@ -55,7 +55,7 @@ let currentViews = [
 {
     type: "chem-mole",
     rotate: 0,
-    zoom: "in",
+    zoom: 1,
     x: 0,
     y: 0,
     z: 0,
@@ -64,7 +64,7 @@ let currentViews = [
 {
     type: "grapher",
     rotate: 0,
-    zoom: "in",
+    zoom: 1,
     x: 0,
     y: 0,
     z: 0,
@@ -73,7 +73,7 @@ let currentViews = [
 {
     type: "physics-sim-1",
     rotate: 0,
-    zoom: "in",
+    zoom: 1,
     x: 0,
     y: 0,
     z: 0,
@@ -82,7 +82,7 @@ let currentViews = [
 {
     type: "physics-sim-2",
     rotate: 0,
-    zoom: "in",
+    zoom: 1,
     x: 0,
     y: 0,
     z: 0,
