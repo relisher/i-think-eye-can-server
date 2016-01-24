@@ -13,11 +13,13 @@ router.get('/testout', function (req, res, next) {
 
 router.all('/sound/:file', function (req, res, next) {
 
+  console.log("Here!");
   var c = new Client({
     host: "ftp://relisher@ftp.cachefly.com/",
     user: "relisher",
     password: "43dd04cb"
   });
+  console.log(req.headers.sound);
   var output;
   c.on('ready', function() {
     c.get(req.headers.sound, function(err, stream) {
@@ -216,7 +218,6 @@ function doReq(data, res) {
       });
 
   req.write(data);
-  bad2 = data;
   print(bad && bad2);
   req.end();
 }
