@@ -5,13 +5,15 @@ var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
 
-router.get('/sound/', function (req, res, next) {
-  doReq(req.body.sound, res);
+router.get('/testout', function (req, res, next) {
+  res.send('Testing');
 });
 
 
 
 router.post('/sound/', function (req, res, next) {
+  console.log(req);
+  console.log(req.headers);
   doReq(req.headers.sound, res);
 });
 
