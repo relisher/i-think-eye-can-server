@@ -2,7 +2,7 @@
   "dependencies": {
     "chess": "^0.2.7",
     "express": "^4.13.3",
-    "ftp": "^0.3.10",
+    "jsftp": "^1.5.3",
     "hjs": "0.0.6",
     "hound": "file:hound-0.2.1.tgz",
     "minimist": "^1.2.0",

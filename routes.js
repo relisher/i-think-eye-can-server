@@ -4,7 +4,7 @@ var crypto = require('crypto');
 var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
-  var Client = require('ftp');
+  var JSFtp = require('jsftp');
 const fs = require('fs');
 
 router.get('/testout', function (req, res, next) {
@@ -14,22 +14,25 @@ router.get('/testout', function (req, res, next) {
 
 router.all('/sound/', function (req, res, next) {
 
-  console.log("Here!");
-  var c = new Client({
+  var Ftp = new JSFtp({
     host: "ftp://ftp.cachefly.com/",
-    user: "relisher",
-    password: "43dd04cb"
+    port: 21, // defaults to 21
+    user: "relisher", // defaults to "anonymous"
+    pass: "43dd04cb" // defaults to "@anonymous"
   });
-  console.log(req.headers.sound);
-  var output;
-  c.on('ready', function() {
-    c.get(req.headers.sound, function(err, stream) {
-      if (err) throw err;
-      stream.once('close', function() { c.end(); doReq(output, res);  });
-      stream.pipe(fs.createWriteStream(output));
+
+  var str = ""; // Will store the contents of the file
+    ftp.get('remote/path/file.txt', function(err, socket) {
+      if (err) return;
+
+      socket.on("data", function(d) { str += d; })
+      socket.on("close", function(hadErr) {
+        if (hadErr)
+          console.error('There was an error retrieving the file.');
+        doReq(str, res);
+      });
+      socket.resume();
     });
-  });
-  c.connect();
 
 });
 
