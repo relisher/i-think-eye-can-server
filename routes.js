@@ -4,7 +4,6 @@ var crypto = require('crypto');
 var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
 
 router.get('/testout', function (req, res, next) {
   res.send('Testing');
@@ -15,14 +14,8 @@ router.get('/testout', function (req, res, next) {
 router.all('/sound/', function (req, res, next) {
   //console.log(req);
   //console.log(req.headers);
+  console.log(req.headers);
   var buf = new Buffer(req.headers.sound, 'base64');
-  fs.writeFile("data.wav", buf, function(err) {
-if(err) {
-    return console.log(err);
-}
-console.log(__filename);
-console.log("The file was saved!");
-});
   doReq(buf, res);
 });
 
@@ -171,7 +164,7 @@ function doReq(data, res) {
         res.status(500).jsonp({ error: 'message' });
         return null;
       }
-      console.log(body);
+      //console.log(body);
       res.json(body);
       });
 
