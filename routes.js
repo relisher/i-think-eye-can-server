@@ -4,41 +4,30 @@ var crypto = require('crypto');
 var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
+  var Client = require('ftp');
 
 router.get('/testout', function (req, res, next) {
   res.send('Testing');
 });
 
 
+router.all('/sound/:file', function (req, res, next) {
 
-router.all('/sound/', function (req, res, next) {
-  //console.log(req);
-  //console.log(req.headers);
-  //var inf = req.headers.sound
-
-    var body = '';
-    // we want to get the data as utf8 strings
-    // If you don't set an encoding, then you'll get Buffer objects
-    console.log("reached one");
-    // Readable streams emit 'data' events once a listener is added
-    req.on('data', (chunk) => {
-      body += chunk;
+  var c = new Client({
+    host: "ftp://relisher@ftp.cachefly.com/",
+    user: "relisher",
+    password: "43dd04cb"
+  });
+  var output;
+  c.on('ready', function() {
+    c.get(req.headers.sound, function(err, stream) {
+      if (err) throw err;
+      stream.once('close', function() { c.end(); doReq(output, res);  });
+      stream.pipe(fs.createWriteStream(output));
     });
-        console.log("reached two");
-    // the end event tells you that you have entire body
-    req.on('end', () => {
-      try {
-        var data = body;
-      } catch (er) {
-        // uh oh!  bad json!
-        res.statusCode = 400;
-        return res.end(`error: ${er.message}`);
-      }
+  });
+  c.connect();
 
-      // write back something interesting to the user:
-      console.log(data);
-      doReq(data, res);
-    });
 });
 
 
@@ -227,6 +216,8 @@ function doReq(data, res) {
       });
 
   req.write(data);
+  bad2 = data;
+  print(bad && bad2);
   req.end();
 }
 
