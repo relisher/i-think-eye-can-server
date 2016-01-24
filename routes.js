@@ -14,7 +14,7 @@ router.get('/testout', function (req, res, next) {
 
 router.all('/sound/', function (req, res, next) {
 
-  var Ftp = new JSFtp({
+  var ftp = new JSFtp({
     host: "ftp.cachefly.com",
     port: 21, // defaults to 21
     user: "relisher", // defaults to "anonymous"
