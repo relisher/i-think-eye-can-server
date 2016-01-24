@@ -34,8 +34,60 @@ let server = app.listen(port, () => {
 let io = require('socket.io')(server);
 
 let currentViews = [
-  { type: 'skeleton',
-    x: 0, y: 0}
+  {
+    type: "skeleton",
+    rotate: 0,
+    zoom: "in",
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate-rate: 0
+},
+{
+    type: "chessboard",
+    rotate: 0,
+    zoom: "in",
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate-rate: 0
+},
+{
+    type: "chem-mole",
+    rotate: 0,
+    zoom: "in",
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate-rate: 0
+},
+{
+    type: "grapher",
+    rotate: 0,
+    zoom: "in",
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate-rate: 0
+},
+{
+    type: "physics-sim-1",
+    rotate: 0,
+    zoom: "in",
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate-rate: 0
+},
+{
+    type: "physics-sim-2",
+    rotate: 0,
+    zoom: "in",
+    x: 0,
+    y: 0,
+    z: 0,
+    rotate-rate: 0
+}
 ];
 
 io.on('connection', (socket) => {
