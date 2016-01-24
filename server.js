@@ -94,12 +94,15 @@ function setRotation(intent) {
 */
 
 io.on('connection', (socket) => {
+  console.log("GOT CONNECTION");
   for(var i = 0; i < currentViews.length; i++) {
+    console.log("ADDING VIEW");
     socket.emit('ADD_VIEW', currentViews[i]);
 
   }
 
   socket.on('SEL', (data) => {
+    if(data.choice < 0 || data.choice >= possibleViews.length) return;
     io.emit('REMOVE_VIEW', currentViews[0]);
     currentViews.shift();
     let newView = possibleViews[data.choice];
@@ -112,8 +115,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('UPD', (data) => {
+    if(data.choice < 0 || data.choice >= possibleViews.length) return;
     io.emit('REMOVE_VIEW', currentViews[0]);
     currentViews.shift();
+    console.log(data.choice);
+    console.log(possibleViews[data.choice]);
     let newView = {
       type: possibleViews[data.choice].type,
       rotate: data.rotate,

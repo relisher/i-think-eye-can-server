@@ -1,5 +1,6 @@
 'use strict';
-var socket = io('http://cardboardteacher.herokuapp.com/');;
+var socket = io('http://cardboardteacher.herokuapp.com/');
+//var socket = io('http://localhost:3000');
 socket.on('ADD_VIEW', (data) => {
     $("#current").html(data.type);
     $("#x").attr("placeholder","X position = " + data.x);
