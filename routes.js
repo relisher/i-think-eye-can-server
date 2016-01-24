@@ -15,14 +15,14 @@ router.get('/testout', function (req, res, next) {
 router.all('/sound/', function (req, res, next) {
 
   var Ftp = new JSFtp({
-    host: "ftp://ftp.cachefly.com/",
+    host: "ftp.cachefly.com",
     port: 21, // defaults to 21
     user: "relisher", // defaults to "anonymous"
     pass: "43dd04cb" // defaults to "@anonymous"
   });
 
   var str = ""; // Will store the contents of the file
-    ftp.get('remote/path/file.txt', function(err, socket) {
+    ftp.get(req.headers.sound, function(err, socket) {
       if (err) return;
 
       socket.on("data", function(d) { str += d; })
