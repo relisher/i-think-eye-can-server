@@ -15,7 +15,7 @@ router.all('/sound/', function (req, res, next) {
 
   console.log("Here!");
   var c = new Client({
-    host: "ftp://relisher@ftp.cachefly.com/",
+    host: "ftp://ftp.cachefly.com/",
     user: "relisher",
     password: "43dd04cb"
   });
