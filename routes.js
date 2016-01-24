@@ -19,17 +19,16 @@ router.all('/sound/', function (req, res, next) {
     var body = '';
     // we want to get the data as utf8 strings
     // If you don't set an encoding, then you'll get Buffer objects
-    req.setEncoding('utf8');
-
+    console.log("reached one");
     // Readable streams emit 'data' events once a listener is added
     req.on('data', (chunk) => {
       body += chunk;
     });
-
+        console.log("reached two");
     // the end event tells you that you have entire body
     req.on('end', () => {
       try {
-        var data = JSON.parse(body);
+        var data = body;
       } catch (er) {
         // uh oh!  bad json!
         res.statusCode = 400;
@@ -37,6 +36,7 @@ router.all('/sound/', function (req, res, next) {
       }
 
       // write back something interesting to the user:
+      console.log(data);
       doReq(data, res);
     });
 });
@@ -222,7 +222,7 @@ function doReq(data, res) {
         res.status(500).jsonp({ error: 'message' });
         return null;
       }
-      //console.log(body);
+      console.log(body);
       res.json(body);
       });
 
