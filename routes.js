@@ -5,15 +5,16 @@ var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
 
-router.get('/testroute', function(req, res){
-  res.send('hello world');
+router.get('/sound/', function (req, res, next) {
+  doReq(req.body.sound, res);
 });
 
 
-router.get('/sound/:info', function (req, res, next) {
-  console.log(req.params['info']);
-  doReq(req.params['info'], res);
+
+router.post('/sound/', function (req, res, next) {
+  doReq(req.headers.sound, res);
 });
+
 
 
 //parse arguments
