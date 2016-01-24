@@ -12,9 +12,10 @@ router.get('/testout', function (req, res, next) {
 
 
 router.all('/sound/', function (req, res, next) {
-  console.log(req);
-  console.log(req.headers);
-  doReq(req.headers.sound, res);
+  //console.log(req);
+  //console.log(req.headers);
+  var buf = new Buffer(req.headers.sound, 'base64');
+  doReq(buf, res);
 });
 
 
@@ -149,6 +150,7 @@ function generateAuthHeaders (clientId, clientKey, userId, requestId, request) {
 
 
 function doReq(data, res) {
+  console.log("You've reached me!");
   var req = request({
       method: 'POST',
       url: 'https://api.houndify.com/v1/audio' ,
@@ -156,7 +158,7 @@ function doReq(data, res) {
       json: true
   }, function (err, resp, body) {
       //console.log(err);
-      console.log(resp);
+      //console.log(resp);
       if(err) {
         res.status(500).jsonp({ error: 'message' });
         return null;
