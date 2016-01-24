@@ -41,7 +41,7 @@ let currentViews = [
     x: 0,
     y: 0,
     z: 0,
-    rotate-rate: 0
+    rotate_rate: 0
 },
 {
     type: "chessboard",
@@ -50,7 +50,7 @@ let currentViews = [
     x: 0,
     y: 0,
     z: 0,
-    rotate-rate: 0
+    rotate_rate: 0
 },
 {
     type: "chem-mole",
@@ -59,7 +59,7 @@ let currentViews = [
     x: 0,
     y: 0,
     z: 0,
-    rotate-rate: 0
+    rotate_rate: 0
 },
 {
     type: "grapher",
@@ -68,7 +68,7 @@ let currentViews = [
     x: 0,
     y: 0,
     z: 0,
-    rotate-rate: 0
+    rotate_rate: 0
 },
 {
     type: "physics-sim-1",
@@ -77,7 +77,7 @@ let currentViews = [
     x: 0,
     y: 0,
     z: 0,
-    rotate-rate: 0
+    rotate_rate: 0
 },
 {
     type: "physics-sim-2",
@@ -86,7 +86,7 @@ let currentViews = [
     x: 0,
     y: 0,
     z: 0,
-    rotate-rate: 0
+    rotate_rate: 0
 }
 ];
 
