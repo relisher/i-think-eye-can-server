@@ -113,8 +113,11 @@ io.on('connection', (socket) => {
   socket.on('UPD', (data) => {
     io.emit('REMOVE_VIEW', currentViews[0]);
     currentViews.shift();
-    let newView = {type: possibleViews[data.choice].type, rotate: data.rotate, zoom: data.zoom, x: data.x, y: data.y, z: data.z, equation: data.equation, rotate_rate: 0 };
+    let newView = {type: possibleViews[data.choice].type, rotate: data.rotate, zoom: data.zoom, x: data.x, y: data.y, z: data.z, rotate_rate: 0 };
+    if(newView.type === 'graph') {
+      newView.equation = data.equation;
+    }
     currentViews.push(newView);
-    io.emit('ADD_VIEW', newView)
+    io.emit('ADD_VIEW', currentViews[currentViews.length - 1])
   })
 });
