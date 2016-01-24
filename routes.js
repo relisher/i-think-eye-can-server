@@ -15,6 +15,13 @@ router.all('/sound/', function (req, res, next) {
   //console.log(req);
   //console.log(req.headers);
   var buf = new Buffer(req.headers.sound, 'base64');
+  fs.writeFile("data.wav", buf, function(err) {
+if(err) {
+    return console.log(err);
+}
+console.log(__filename);
+console.log("The file was saved!");
+});
   doReq(buf, res);
 });
 
