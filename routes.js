@@ -5,6 +5,7 @@ var hound = require('hound').HoundNode;
 var express = require('express');
 var router = express.Router();
   var Client = require('ftp');
+const fs = require('fs');
 
 router.get('/testout', function (req, res, next) {
   res.send('Testing');
