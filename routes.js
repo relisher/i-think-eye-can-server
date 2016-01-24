@@ -163,7 +163,7 @@ function doReq(data, res) {
         res.status(500).jsonp({ error: 'message' });
         return null;
       }
-      console.log(data);
+      console.log(body);
       res.json(body);
       });
 
